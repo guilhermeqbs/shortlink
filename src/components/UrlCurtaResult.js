@@ -1,0 +1,82 @@
+
+import { useState } from 'react';
+
+const UrlCurtaResult = ({ urlCurta, refreshUrlCurta }) => {
+  const [copied, setCopied] = useState(false);
+
+  const copyToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(urlCurta);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000); // Reset após 2 segundos
+    } catch (err) {
+      console.error('Falha ao copiar:', err);
+      // Fallback para navegadores antigos
+      const textArea = document.createElement('textarea');
+      textArea.value = urlCurta;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textArea);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
+  };
+
+  return (
+    <div className="mt-8">
+      <div className="block font-medium font-primary text-2xl text-primary mb-4 text-center sm:text-left">
+        Seu link encurtado
+      </div>
+      
+      <div className="flex flex-col sm:flex-row gap-3">
+        {/* Container do link */}
+        <div className="min-h-[2.875rem] flex items-center text-blue-600 border border-gray-300 bg-white rounded-md p-2 w-full overflow-hidden">
+          <a 
+            href={urlCurta} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="truncate hover:text-blue-800 transition-colors duration-200"
+            title={urlCurta}
+          >
+            {urlCurta}
+          </a>
+        </div>
+        
+        {/* Botões de ação */}
+        <div className="flex gap-2 sm:flex-col sm:w-auto w-full">
+          <button 
+            className={`font-primary text-xl font-bold bg-white rounded-full px-6 py-2 shadow-md border transition-all duration-200 whitespace-nowrap flex-1 sm:w-auto ${
+              copied 
+                ? 'text-green-600 border-green-200 bg-green-50' 
+                : 'text-blue-600 border-blue-200 hover:bg-gray-200 hover:text-blue-700 active:scale-95'
+            }`}
+            onClick={copyToClipboard}
+            disabled={copied}
+          >
+            {copied ? '✓ Copiado!' : 'Copiar'}
+          </button>
+          
+          {refreshUrlCurta && (
+            <button 
+              className="font-primary text-xl font-bold text-gray-600 bg-white rounded-full px-6 py-2 shadow-md border border-gray-200 hover:bg-gray-100 hover:text-gray-700 active:scale-95 transition-all duration-200 whitespace-nowrap flex-1 sm:w-auto"
+              onClick={refreshUrlCurta}
+              title="Criar novo link"
+            >
+              Novo
+            </button>
+          )}
+        </div>
+      </div>
+      
+      {/* Indicador de sucesso */}
+      <div className="mt-3 text-center">
+        <p className="text-xs text-white/70 font-primary">
+          ✅ Link criado com sucesso
+        </p>
+      </div>
+    </div>
+  );
+};
+
+export default UrlCurtaResult;

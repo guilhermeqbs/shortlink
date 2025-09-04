@@ -1,70 +1,91 @@
-# Getting Started with Create React App
+# Encurtador de Links - Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este é o frontend do projeto Encurtador de Links, construído com React, Vite e Tailwind CSS.
 
-## Available Scripts
+## 🚀 Tecnologias Utilizadas
 
-In the project directory, you can run:
+- **React 19** - Biblioteca JavaScript para construção de interfaces
+- **Vite** - Build tool e servidor de desenvolvimento
+- **Tailwind CSS** - Framework CSS utilitário
+- **Axios** - Cliente HTTP para requisições à API
+- **Vitest** - Framework de testes
 
-### `npm start`
+## 📋 Pré-requisitos
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Node.js (versão 18 ou superior)
+- npm ou yarn
+- Backend do projeto rodando (normalmente na porta 5000)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🛠️ Como rodar o projeto?
 
-### `npm test`
+1. Instale as dependências:
+```sh
+npm install
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. Inicie o servidor de desenvolvimento:
+```sh
+npm run dev
+```
 
-### `npm run build`
+O projeto estará disponível em `http://localhost:5173`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🏗️ Como buildar o projeto para produção?
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Gere o build de produção:
+```sh
+npm run build
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. Para visualizar o build localmente:
+```sh
+npm run preview
+```
 
-### `npm run eject`
+Os arquivos buildados estarão na pasta `dist/`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 🧪 Como executar os testes?
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```sh
+npm run test
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 🚀 Como fazer deploy do projeto?
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+### Vercel
+1. Conecte seu repositório ao Vercel
+2. Configure o comando de build: `npm run build`
+3. Configure a pasta de output: `dist`
+4. Configure as variáveis de ambiente
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 🏗️ Estrutura do Projeto
 
-### Code Splitting
+```
+src/
+├── components/
+│   ├── urlCurtaForm.js     # Formulário para encurtar URLs
+│   └── UrlCurtaResult.js   # Exibição do resultado
+├── App.js                  # Componente principal
+├── api.js                  # Configuração da API
+└── index.js               # Ponto de entrada da aplicação
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## ⚙️ Configuração da API
 
-### Analyzing the Bundle Size
+O frontend faz requisições para o backend através do arquivo `src/api.js`. 
+Certifique-se de que a URL base da API esteja correta para seu ambiente.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 🎨 Personalização
 
-### Making a Progressive Web App
+O projeto usa Tailwind CSS para estilização. Você pode personalizar:
+- Cores e temas no arquivo `tailwind.config.cjs`
+- Estilos globais no arquivo `src/index.css`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 📦 Scripts Disponíveis
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- `npm run dev` - Inicia o servidor de desenvolvimento
+- `npm run build` - Gera o build de produção
+- `npm run preview` - Visualiza o build localmente
+- `npm run test` - Executa os testes
