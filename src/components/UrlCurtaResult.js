@@ -56,25 +56,9 @@ const UrlCurtaResult = ({ urlCurta, refreshUrlCurta }) => {
           >
             {copied ? '✓ Copiado!' : 'Copiar'}
           </button>
-          
-          {refreshUrlCurta && (
-            <button 
-              className="font-primary text-xl font-bold text-gray-600 bg-white rounded-full px-6 py-2 shadow-md border border-gray-200 hover:bg-gray-100 hover:text-gray-700 active:scale-95 transition-all duration-200 whitespace-nowrap flex-1 sm:w-auto"
-              onClick={refreshUrlCurta}
-              title="Criar novo link"
-            >
-              Novo
-            </button>
-          )}
         </div>
       </div>
       
-      {/* Indicador de sucesso */}
-      <div className="mt-3 text-center">
-        <p className="text-xs text-white/70 font-primary">
-          ✅ Link criado com sucesso
-        </p>
-      </div>
     </div>
   );
 };

@@ -11,6 +11,9 @@ export default defineConfig({
   build: {
     outDir: 'build'
   },
+  define: {
+    'process.env': {}
+  },
   esbuild: {
     loader: 'jsx',
     include: /src\/.*\.[tj]sx?$/,

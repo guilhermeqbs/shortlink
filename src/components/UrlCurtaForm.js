@@ -78,8 +78,11 @@ const UrlCurtaFormInternal = ({ onUrlCurtaCreated }) => {
 
 // Componente principal que envolve com o provider
 const UrlCurtaForm = ({ onUrlCurtaCreated }) => {
+    
+    const recaptchaKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
+    
     return (
-        <GoogleReCaptchaProvider reCaptchaKey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI">
+        <GoogleReCaptchaProvider reCaptchaKey={recaptchaKey}>
             <UrlCurtaFormInternal onUrlCurtaCreated={onUrlCurtaCreated} />
         </GoogleReCaptchaProvider>
     );
