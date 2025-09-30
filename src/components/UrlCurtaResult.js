@@ -5,22 +5,9 @@ const UrlCurtaResult = ({ urlCurta, refreshUrlCurta }) => {
   const [copied, setCopied] = useState(false);
 
   const copyToClipboard = async () => {
-    try {
-      await navigator.clipboard.writeText(urlCurta);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000); // Reset após 2 segundos
-    } catch (err) {
-      console.error('Falha ao copiar:', err);
-      // Fallback para navegadores antigos
-      const textArea = document.createElement('textarea');
-      textArea.value = urlCurta;
-      document.body.appendChild(textArea);
-      textArea.select();
-      document.execCommand('copy');
-      document.body.removeChild(textArea);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    }
+    await navigator.clipboard.writeText(urlCurta);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
   };
 
   return (

@@ -13,37 +13,23 @@ const UrlCurtaFormInternal = ({ onUrlCurtaCreated }) => {
         e.preventDefault();
         setError(null);
 
-        const cleaned = (urlLonga || "").trim();
-        if (!cleaned) {
+        if (!urlLonga.trim()) {
             setError("Informe um link válido");
             return;
         }
 
-        // Verificar se o reCAPTCHA está disponível
         if (!executeRecaptcha) {
-            setError("reCAPTCHA não carregado. Tente novamente.");
+            setError("reCAPTCHA não carregado");
             return;
         }
 
         setLoading(true);
         try {
-            // Executar reCAPTCHA
             const recaptchaToken = await executeRecaptcha('url_shortener');
-            
-            const result = await createUrlCurta(cleaned, recaptchaToken);
-            // extrai valor de forma compatível com App.js
-            const value = result?.urlCurta ?? result ?? null;
-            if (typeof onUrlCurtaCreated === "function") {
-                onUrlCurtaCreated(value);
-            }
-            //setUrlLonga("");
+            const result = await createUrlCurta(urlLonga.trim(), recaptchaToken);
+            onUrlCurtaCreated(result?.urlCurta || result);
         } catch (err) {
-            console.error("Erro ao encurtar o link:", err);
-            if (err.message?.includes('reCAPTCHA')) {
-                setError("Falha na verificação de segurança. Tente novamente.");
-            } else {
-                setError("Falha ao encurtar o link. Tente novamente.");
-            }
+            setError("Falha ao encurtar o link");
         } finally {
             setLoading(false);
         }

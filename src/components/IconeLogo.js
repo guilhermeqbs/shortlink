@@ -6,44 +6,30 @@ const IconeLogo = () => {
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
-        // Fade in inicial
-        setTimeout(() => setIsVisible(true), 100);
+        setIsVisible(true);
 
         const sequenciaTextos = [
-            "encurtador/link",
-            "encurtado/lin",
-            "encurtad/li",
-            "encurta/l",
-            "encurt/*",
-            "encur/*",
-            "encu/*",
-            "enc/*",
-            "en/*",
-            "e/*"
+            "encurtado/lin", "encurtad/li", "encurta/l", "encurt/*", 
+            "encur/*", "encu/*", "enc/*", "en/*", "e/*"
         ];
 
-        // Cursor piscando
         const intervaloCursor = setInterval(() => {
             setMostrarCursor(prev => !prev);
         }, 600);
 
-        // Usar map para criar todos os timeouts de uma vez
         const timeouts = sequenciaTextos.map((texto, index) => {
             return setTimeout(() => {
                 setLogo(texto);
-                
-                // Para o cursor quando chegar no último texto
                 if (index === sequenciaTextos.length - 1) {
                     clearInterval(intervaloCursor);
                     setMostrarCursor(false);
                 }
-            }, 1000 + (400 * index)); // Aguarda 1s antes de começar, depois 400ms entre cada mudança
+            }, 1000 + (400 * index));
         });
 
-        // Cleanup - limpa todos os timeouts e intervalos
         return () => {
             clearInterval(intervaloCursor);
-            timeouts.forEach(timeout => clearTimeout(timeout));
+            timeouts.forEach(clearTimeout);
         };
     }, []);
 
